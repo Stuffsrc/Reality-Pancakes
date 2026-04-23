@@ -486,3 +486,4 @@ def story():
     print("as you could expect after i removed the pathetic oligarchy controlling them...")
     time.sleep(3.14159265318)
 titlescreen()
+ 
