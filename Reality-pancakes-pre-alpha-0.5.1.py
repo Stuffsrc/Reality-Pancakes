@@ -25,42 +25,42 @@ def titlescreen():
     intro()
     #below is a difficulty selection thing. it does not work yet, but will be implemented later. for now, deal with it.
 def intro():
+    global difflevel
     print("1. easy")
     print("2. medium")
     print("3. hard")
     print("4. abslolute nightmare")
     difficulty = input(">")
     if difficulty == "1":
-
+        global difflevel
         print("you have chosen easy difficulty.")
         time.sleep(2)
         print("good luck!")
-        time.sleep(2)
-        global difflevel 
+        time.sleep(2) 
         difflevel = 1
         intro_scene_bedroom()
     elif difficulty == "2":
+        global difflevel
         print("you have chosen medium difficulty.")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        global difflevel
         difflevel = 2
         intro_scene_bedroom()
     elif difficulty == "3":
+        global difflevel
         print("you have chosen hard difficulty.")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        global difflevel
         difflevel = 3
         intro_scene_bedroom()
     elif difficulty == "4":
+        global difflevel
         print("you have chosen absolute nightmare! (you are going to die btw)")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        global difflevel
         difflevel = 4
         intro_scene_bedroom()
     else:
