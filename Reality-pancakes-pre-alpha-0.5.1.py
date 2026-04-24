@@ -158,9 +158,9 @@ def kitchensceneforrealthistime():
     print("4. do nothing and stay exactly as you are right now")
     choice = input(">")
     if choice == "1":
-        typewrite("you try to eat the pancakes. As soon as you touch the pancakes, you realise that you are using your hands to eat them, which sucks because they are covered in sticky syrup. it feels weird, kinda like when your dad abandoned your family's car for some reason. it also reminds you of your mother's delicious pancakes, which you loved so much. man, you miss those times.")
-        time.sleep(5)
-        typewrite("anyway, you don't feel. like using your hands, and need utensils.")
+        typewrite("you try to eat the pancakes. As soon as you touch the pancakes, you realise that you are using your hands to eat them, which sucks because they are covered in sticky syrup. it feels weird because you are a civilised human being. probably.")
+        time.sleep(1)
+        typewrite("anyway, you don't feel like using your hands, and need utensils.")
         utensilgetting()
     elif choice == "2":
         typewrite("slightly terrified, you leave the kitchen and head back upstairs.")
@@ -176,7 +176,7 @@ def kitchensceneforrealthistime():
     kitchensceneforrealthistime()
 def utensilgetting():
     typewrite("you search around the kitchen for some sort of utensil. you see several drawers. they are all the same size, arranged in a vertical layout.")
-    time.sleep(3)
+    time.sleep(2)
     drawers()
 def drawers():
     typewrite("you may:")
