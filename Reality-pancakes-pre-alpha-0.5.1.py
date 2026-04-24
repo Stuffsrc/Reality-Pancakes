@@ -13,6 +13,7 @@ def typewrite(text, delay=0.1):
     print()  # Move to the next line once finished
 #for now, difflevel is defined as 2 for medium until i can get the defining on the go sort of thing to work.
 #if you have any tips to make this work, pls help. thx!
+global difflevel
 #ADDME add a way to have SFX at certain points in the game, and also some music.
 #TEMPSOLUTION for now the game is locked on medium until i can make the variable storing difficulty work properly. sorry for now
 def titlescreen():
