@@ -13,7 +13,7 @@ def typewrite(text, delay=0.1):
     print()  # Move to the next line once finished
 #for now, difflevel is defined as 2 for medium until i can get the defining on the go sort of thing to work.
 #if you have any tips to make this work, pls help. thx!
-difflevel = 2
+global difflevel = 2
 #ADDME add a way to have SFX at certain points in the game, and also some music.
 #TEMPSOLUTION for now the game is locked on medium until i can make the variable storing difficulty work properly. sorry for now
 def titlescreen():
@@ -36,28 +36,28 @@ def intro():
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        difflevel = 1
+        global difflevel = 1
         intro_scene_bedroom()
     elif difficulty == "2":
         print("you have chosen medium difficulty.")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        difflevel = 2
+        global difflevel = 2
         intro_scene_bedroom()
     elif difficulty == "3":
         print("you have chosen hard difficulty.")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        difflevel = 3
+        global difflevel = 3
         intro_scene_bedroom()
     elif difficulty == "4":
         print("you have chosen absolute nightmare! (you are going to die btw)")
         time.sleep(2)
         print("good luck!")
         time.sleep(2)
-        difflevel = 4
+        global difflevel = 4
         intro_scene_bedroom()
     else:
         print("invalid input. please choose a valid difficulty.")
