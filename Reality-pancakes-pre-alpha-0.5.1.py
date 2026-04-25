@@ -4,13 +4,21 @@ import webbrowser
 import os
 import json
 #starting info for le jeux vidéo.
+#please note that for the flag "branch2path" 0 is default.
+#it will be set to "1" if the player chooses searchpath and "2" if they choose findpath.
 game_state = {
     "difflevel": 2,
     "ate_pancakes": False,
     "opened_top_drawer": False,
     "trust": 0,
     "reality_stability": 100,
-    "2nd_run": False }
+    "2nd_run": False
+    "bottom_opened": False
+    "branch2_path": 0
+    "choose???" = False
+    "attempt_reality_break" = False
+    "bleeding" = False
+}
 #typewriter effect for certain text
 def typewrite(text, delay=0.1):
     for char in text:
@@ -68,14 +76,15 @@ def intro():
         difflevel = 4
         intro_scene_bedroom()
     elif difficulty== "5":
-        if game_state["2nd_run"] 
+        if game_state["2nd_run"]:
         typewrite("wait...")
         time.sleep(2)
         typewrite("how did you...")
         time.sleep(2)
         typewrite(">>ERROR: SECURITY BREACH")
         branch2()
-        else print("ḯ̵̬̹͗͝n̸͚̏̿̈̒́͝v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ ̵̣͠ǐ̵̡̞̣͛̈ͅn̵̰͝p̵͖͐̐̐͝u̸̬̐̂̿̂t̷̨̧̩̼̪̉̈́̈̈. please choose a v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ difficulty.")
+        else:
+        print("ḯ̵̬̹͗͝n̸͚̏̿̈̒́͝v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ ̵̣͠ǐ̵̡̞̣͛̈ͅn̵̰͝p̵͖͐̐̐͝u̸̬̐̂̿̂t̷̨̧̩̼̪̉̈́̈̈. please choose a v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ difficulty.")
         intro()
     else:
         print("invalid input. please choose a valid difficulty.")
@@ -251,6 +260,7 @@ def middledrawer():
     surviveending()
 def bottomdrawer():
     typewrite("you open the bottom drawer. nothing is there. you close the drawer.")
+    game_state["bottom_opened"] = True
     time.sleep(2)
     drawers()
 def placewhereyouprobablydie():
@@ -269,6 +279,7 @@ def placewhereyouprobablydie():
     print("thank you for playing my small game! if you enjoyed, consider leaving a star on the repository! i am also open to suggestions for expanding this game, and for sequels or other ideas. please report any bugs at the repository!")
     webbrowser.open("https://github.com/Stuffsrc/unnamed-game")
     time.sleep(1)
+    typewrite("(something feels... incomplete...)")
     typewrite("would you like to try again? y/n")
     choice = input(">")
     if choice == "y":
@@ -294,6 +305,7 @@ def placewhereyouprobablydie():
     else: typewrite("invalid input. please choose a valid option.")
     choice = input(">")
     if choice == "y":
+        game_state["2nd_run"] = True
         typewrite("alright, hold up...")
         time.sleep(3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870660631558817488152092096282925409171536436789259036001133053054882046652138414695194151160943305727036575959195309218611738193261179310511854807446237962749567351885752724891227938183011949129833673362440656643086021394946395224737190702179860943702770539217176293176752384674818467669405132000568127145263560827785771342757789609173637178721468440901224953430146549585371050792279689258923542019956112129021960864034418159813629774771309960518707211349999998372978049951059731732816096318595024459455346908302642522308253344685035261931188171010003137838752886587533208381420617177669147303598253490428755468731159562863882353787593751957781857780532171226806613001927876611195909216420198938095257201065485863278865936153381827968230301952035301852968995773622599413891249721775283479131515574857242454150695950829533116861727855889075098381754637464939319255060400927701671139009848824012858361603563707660104710181942955596198946767837449448255379774726847104047534646208046684259069491293313677028989152104752162056966024058038150193511253382430035587640247496473263914199272604269922796782354781636009341721641219924586315030286182974555706749838505494588586926995690927210797509302955321165344987202755960236480665499119881834797753566369807426542527862551818417574672890977772793800081647060016145249192173217214772350141441973568548161361157352552133475741849468438523)
         typewrite("welcome back! pls choose ur difficulty.")
@@ -312,7 +324,7 @@ def placewhereyouprobablydie():
         print("autoexit in 1 second...")
         time.sleep(1)
         sys.exit()
-    else: print("invalid input. byebye then loser")
+    else: print("invalid input. byebye then lol")
     sys.exit()
 def placewhereyoumightdie():
     typewrite("you are in a place where you might die. you cannot eat, but you can survive here for a while. you wait around, hoping that someone will save you.")
@@ -321,7 +333,7 @@ def placewhereyoumightdie():
     choice = input("y/n >")
     if choice == "y":
         typewrite("wonderful!")
-        game_state["trust"] += 1
+        game_state["trust"] += 2
         story()
     elif choice == "n":
         game_state["ignored_story"] = True
@@ -329,7 +341,7 @@ def placewhereyoumightdie():
         typewrite("somehow, you get teleported somewhere else.")
         placewhereyouprobablydie()
     elif game_state["ignored_story"] == True:
-        typewrite("hey, you ignored me last time. that really hurt me. however, i will tell you the story anyway.")
+        typewrite("hey, you ignored me last time. that really hurt me you know :( however, i will tell you the story anyway.")
         time.sleep(1)
         story()
     else: print("invalid input. please choose a valid option.")
@@ -346,6 +358,7 @@ def placewhereyoumightdie():
     typewrite("thank you for playing my small game! if you enjoyed, consider leaving a star on the repository! i am also open to suggestions for expanding this game, and for sequels or other ideas. please report any bugs at the repository!")
     webbrowser.open("https://github.com/Stuffsrc/unnamed-game")
     time.sleep(1)
+    typewrite("(something feels... incomplete...)")
     typewrite("would you like to try again? y/n")
     game_state["ignored_story"] = True
     choice = input(">")
@@ -411,6 +424,7 @@ def surviveending():
     typewrite("thank you for playing my small game! if you enjoyed, consider leaving a star on the repository! i am also open to suggestions for expanding this game, and for sequels or other ideas. please report any bugs at the repository!")
     webbrowser.open("https://github.com/Stuffsrc/unnamed-game")
     time.sleep(1)
+    typewrite("(something feels... incomplete...)")
     print("would you like to try again? y/n")
     choice = input(">")
     if choice == "y":
@@ -560,7 +574,13 @@ def story():
     surviveending()
     #story unfinished, deal with it soon
 def branch2():
-    typewrite("well, you've already been through this, so let's cut to le chase.")
+    typewrite("alright. you've already seen 1 ending, and i hoped you would think that is the real ending.")
+    typewrite("for your own good, i would have subtly sent you back to reality by giving my self up.")
+    typewrite("then, i realised that would not be full for anyone.")
+    typewrite("there are still people suffering here, after all.")
+    typewrite("and i just cannot live knowing i left people here to suffer.")
+    typewrite("so, i reached a compromise with myself. you will be free, but we need to do something about these people.")
+    typewrite("since you've already seen some of this, so let's cut to le chase.")
     time.sleep(1)
     typewrite("in case you could not tell, this reality is collapsing.")
     time.sleep(1)
@@ -570,7 +590,7 @@ def branch2():
     typewrite("#2 you find a machine, one similar or identical to the one used on me. or something else. this is hard though. like, really, really hard. i will explain later.")
     typewrite("#3 would require you to find the un- oh, crap! i've got to take this call, catch you later! good luck lol.")
     time.sleep(3)
-    typewrite("well, pancake stack just abandoned you. do you still trust him?")
+    typewrite("well, pancake stack just ""abandoned"" you. do you still trust him?")
     print("y/n")
     choice = input(">")
     if choice == "y":
@@ -579,9 +599,79 @@ def branch2():
         branch2cont()
     elif choice == "n":
         typewrite("alright, so you don't trust him. that's fine, you may be able to do this solo.")
-        game_state["trust"] = 0.5
+        game_state["trust"] = 1
         branch2cont()
 def branch2cont():
     typewrite("feeling quite confident in yourself, you begin your quest to find some method of exiting this realm.")
+    time.sleep(1)
+    typewrite("alright, so what are you going to try?")
+    time.sleep(1)
+    typewrite("this is ą̴̢̨̡̡̨̧̡̨̛̤̪̬̪͔͙̺̖̺̩̻̲̬̣̻̦̰͍̫̯̠͍̗͎̭̩̞̳̰̣͎̮̣̻̈́̔̎̇͊̅͆̎̃̑̽͌̓̾͂͑̾́̊̅̏͐̇͂̿̈̏͌̋̏͋̋̾̍̈́̈́͌̆̍̀͋̉̋̾̐͌̈͊̈́͑̆̓̐̿̓̄̄̓̾͂̚͘̚̕̚͘͝ͅ ̶̡̢̢̡̩̥̜͉̩̱͔̬̯͈͉͚̹͚̞̬͕͕̦̭͉̖͖̭̬̩͔̭̰̦͔̗͎̻̇̍̈́͊̽̋̾̅̑͛̽̔̒̈́̿͐͒͂̃̆̃̿͌͑̈́͐͌͋̆̀̉̋͐̑̀̄̌̉̈́̆͋́̾̌͋̓̌̏̂́̄͘̕͘̕̚̚̚͝͠͝͝͝͠d̴̨̨̧̨̨̨̨̧̧̛̛̛̩̘͓͉̲̲̝͈̙̟̫͙̳̳̭͇̜͇̣̗͎̣̪̮̳̖̫̰̭͔͉̤̱͙͙̪̩̠̻͎̘̬̻̤͙̯̩̪̱͎͕̠͇̭͚̥̺͚̙̬̝̙̙̭̻̠̟̟̼͖̯͈̼̣̖̻̞̬̖̙̠̯̺͉̟̰̲̞̮̣̼͚̜̦͔̞̬̦̻̝̣͎͖͕̮͍̳̠̦̬̥̖̤̦̣͖̹͈͓͖̝͇̭̹̯͔̹̰̞̻̪̣̪̠̘̎͗̊̈́͆́̄̈́̉̇͂̈͂̔́̏̓͌̊́͗̌̽̇̔̽̾̿̏͌̈́̃̈́̃̑̐̽͊̍̃̈́͗͗͑̌͑́̽̐̿̉͌̉͂͛͂̽̃̉̈́̀̑̊͋̇́̔͌̒̽̍͒̈́̉̌̆̐̍̑͐̓̈́̈́̉̾̾̐̑̈́̈́̏̅̂̏̒̒̔̄̅̾̅̈́́͛̎̒̃̇̄̌̎̕̕̚͘͘̕̚̚̕͘͜͜͜͝͝͝͝͠͝͝͝͝͝͝͠͠i̸̢̧̡̨̧̛̛̛̯̰͉̞͎̜̠̹͕͈̺̲̹̱̲̝̺̱͎̘̠̠̥̻̜̳͍̲̦̟̱͉̦̺͚̘̞̣͇͈̫̬̠̺̫̣̱̞̻͍͗̀͋̌̓̐̏̔͒̃̏͒́͒͐̀̏̄̋̀̌̑̊͋̊̓̑͆̌͗́̈́͛̑̆̋́͐́̑́̐̊̇́̓́̾̏͛̓̿̄̋́͌́͐̅̉̾̀̎́̍̓̇̈́̀̓̋̇̃̉̈́̄́̓͆̋͗̏̊̓͌̏̍̓̈́̀͒͌̓̔̀͛̐̓̓̚̚͘̚̕̚͘̚͜͜͜͠͝͝͝͠͠͝͠͝͠͠ͅͅͅf̴̡̡̢̡̡̧̢̛̖̬̗̦̗̯̬͓̫͉̣̩̣̺̜̘̠͈̫̘̻̣̫̯̪̗̦̣̣͚͕͉̳̜͉̟̠͖̭̫̱̀̅̃͆̋̃̀̂̈́̐̈́́̊͌̎̇̇̎̔͋͌̉͛̍̃̌̑͗͗͊́͆̄̓͐̎̊̒͋̃͒̿̓̽̀̌̇͛͋̿̏͘̕͘͘͝͠ͅͅf̸̡̧̡̨̧̢̡̧̢̧̢̡̺͔͖̖̭͎̹̺͈͎͓͙͙̺̗͚̹̻͇͍̗̦̜̬̜̱̱̤̞͍̪̫̖̦̥͉̹͈̝̞̱̝͕͇̤͇͔̜͚̮̳̰͉̜̭̘̙͔͖͍̠͕̪͓̩̳̣̖̱̗̯͙̮̤͖͉͙̤̜͔̼͎̟̜͕̮̻͎̗͓͖̭̱̠̱͕̩̳̬̦̣̟̮̻͉̜̤̞̼̤̩̻͕͈̲̬̖̠̣̹̫͉͉̜̝͓̱̘͖͎̜̳̞̣̌̏̒̒̂̓̀́͐̄͜͜͜ͅͅͅͅẽ̸̢̨̧̧̛͔͙̪͉̻͕̟̻̥̙͇̟̬̬͙͖̤͚̹̱͓̼͚̬̥͓̝͉͔͓̮̖̪͙̗̹̹̩̻̘̩̈́̈́͆͑̾͑̅̀͋̒̎́͊͂͆͑͂̅͂́̓̆̓̃͂̓̇̔̿̒̏̊̽͗͋̈́́̾̄̅̑͋̾̌̒̔̋͂̿̂͑̎͐̃̄̽̐́͛̌̎́͐̾͊̾̔̈́̀͂͑̄̚̕̕͜͠͠͠͠͝͝͠͝ͅͅͅŗ̵̢̧̢̨̨̨̧̨̨̨̨̨̡̡̛̛̛̛̭̗͕͔̫̬͔̗̖̳̬̭̼̼̳͈̞̞͚̖̤͈̫͔͙̗͕͍̯͔̰͉͎̫̪̳̤̝̞͖͉͚̭̲̣̪̱̝͖͎̻̭̫̠̯͔̺͖͈̝͉̝̦̦̪̮͈̠͙͎͚͖̬̯͔̹͚̗̜͖̩̦̹̙̦̼̤̮͈̥̘̼͚͍̣̳̣̲̺̠͍͖̪̱͚̬̺͐̌͆̓̀͊̔̈́̽̌̀͋̌̒̌̏̈́̉͒͗̇̾͌͛̌̿͛͋͌̇̎̒̈́̈́̋̋̾̑̂͌̓̇̀̽̈́̿͗̌̈́̆̉̈́̀̓͛͆̈́͊̓͒̔̐̓̈́̏̀̇̎̾̽͆́̈̄̃̋͆̀̑̈͛̄͊̽̄͌͛̈́͗͌̄͐̐̎͆̓̌̾̓̉̃̿̎͆͂͊̓͑͑̒̌̂̒̌̊̑̚͘̚͘͘͘͘̚͘̚̚̕͘̕͜͜͠͝͝͝͠͝͝͠e̵̹̲͚̼̺͚͔̟̱̱͉͙͙̅͛̃̿n̸̨̨̡̡̢̨̢̢̧̧̧̨̢̛̛̛̛̞̼͈̜̫͕͍͓̩̬̥̱̟̥̠̟͉̦̣̻̫̗̖̞̘̣̭̭̩̼̹͕͎̹̠̲̬̱̺͚͚̜̦̖̱͇̱͓̠̟̝̝͔̪͓͎̙̭͚̬̗̳̺̜̻̪̼̳͕̝̪̼̭̣̘̭͖̗͙̯̬͔͇͈̖̭̙͎͈͙͔͔̱̞̜̙͈͓̼̣̗̼͓̹͎͎̥͉͇̠͎͇͔̬͇͔̠͓̻͎̬̙̯͈̠͔͙̜̱̱̦̞̼͙̯̺͈̖̿͛̾̍͗̿̔̇̏̄̈́̑͋̈͋͑͒̅͆͗͊̓̽͊̒̊́́̽̊͐͋̈́̾̈́̎̄̈́͛̆̉̓͋̀̅̃̀́̓̓͛́͑́̽̈́́̈̂̓̒̓̇̅̔̊͑͒̔̽̔̔̃̑̐̽͑̈́͛̑̋̅̓͒̃͂̒͋̑͂̄̑̈́̽́͛̍̆̒̇̽͐̾̀͛̃͌̈͂̀͗͌̃̊̄̀̂͌͒͊͑̃͋̿̓̏́̒̀̚̚͘͘̚͘̚͘̕͜͜͠͠͠͝͠͝͝͝ͅͅͅt̸̛̛̛̳̣̑̐͗̓́̿̇̈́͗̆̎͑̏̑̿̑̿̽̾̋̓͂̇̇̋̀̇̇̈́̋͐̇͌͛̈́̓̏̒̀̂̒͑̿̑̃̒͊̈́́̈́͒͆̇̊͐̄̂̆͊̐͑̐̃͑͋͂̅͊̎͑͊̉̎͌͋̋̃͊͂̓͂̀͂̓̾͛̉͂̈̓͊͌̎͒͋͌̔̍̔͋̋̌̈̈̾̿̾͂͑͑͌̈́͗̀̽͋͂̔̄̐͐̈́̿̈́͑̉͊̍̾̚͘̕͘͘̕͜͝͠͝͝͝͝͝͝͠ ̶̨̡̡̡̢̡̨̨̨̢̨̧̛̛̛̛͕̩̠͍̯̩͉͈̱̲͕͍͕̪̺̟̱̖̩̠̙͉̳̬̲̭̫̯̥̝͕̯̝̭̗̯̪̳̹̘͍̠̫̩̠̹͈̘̙̙̩̬̺̗͔̳̱̼͚͖͓̞̲̣͓͙̘̮̰̦̭͇͓͍͖̻̭̜̤̠̫͇̥̮̩̠̱͚̝̫̟̪̯͇̪̭̺̄̀̑̄̂̅̽̾͆̍̂͛͌͛͆̍̉̽̎̌̓͂̓͆͒͂̆̃̃̈́̿́̽̔̿̂̿̃̋̊̐͂̈́̈́̅͑̂̾͌̍̾͂̾̄̐̎̓̐̎̆͂̈͂̉̊͗̽̿̓͊͒̓͋͂̇̈́͐̐̓̋̎͗̏̿̀̒̽͋̀̌̄̀̓͘̚̚͘̕̕̚̚̚̕͘̚͜͜͜͜͠͝͠͠͝͝͠͠ͅg̴̨̢̛̛͉̭̖̱̱̺̼̼̮͉̯̦̹͎̬̹̗̟͍͈̞͔̗̮̜̹͙͈͇͉̘̤͙͇̫̐͂̓̏̍̓̅͋͐̎̂̌̾͒̈̅͆͋̽̄͗̄̓̆̿̂̓͛̂̀̑̎́̏́͆͆̊̋͂͛̈́̈̊̉͑̏̓̂̑̒̃̏̇̎̄͒̅̋̀͑̃̌̅̏̾̓̄̌͊̕͘̕͘̚͜͝ͅͅͅą̶̧̛̛̛̛̻͍̱͈̯̙͈̘̻̱̬̠̮̥̲̟͖̙̳̲̲̼̘̪̗͊͐̾̀́̾̈́̇̔̐͌̇̂͊̒̏͋̌͊̂̈͆̀̈́̆̔̿͌̾̑͆̄̃͂͑̀̇̋̍͋̾̽̅͊̈́̐̀̐̈́̎͛͆̐̏̒̅̓̽̄̋͆̈́̐̆̓͊̅̉̅̄͒̈̂̋̓̑̎͛̔͆̃̔̄̑̄́̉͂̅̂̐̈̊̀̎̈́̄̌̀̚̕̚̕̚͘̚͘̚͘͝͝͠͝͝͠͝͠ͅm̸̧̢̡̡̧̢̢̬̖̯̫̲̙̥̻͙͚̘̫͚̳͎͍̘̹͙̮͔̝̪͇̯͕̲͓͔̯̞̲̩̭͇̟̥̗̻͓̟̙̖̲̦̞̬͙̞͉̤͖̮̙͈̺̱̖͎̫̣̪̗̜͔̳̺̘̥̬̺̩̞̘̣̙̼̮̼͇͎͕̥̻̙̜̤̪͕͈̥̞̼̱̖͔̲͎̥̯̭͚̱͚̹͇̬͍̙͇͙̩̝̌͋͆͑́̓̍̋̾̿̂͊͑͂̆͊̈́̕͘͜͜͜͜ͅͅͅȩ̢̨̡̡̨̧̨̨̖͇̼̜̖̟͕̰̖̲̼̹̲̟͖̗̬͈̭̺̲̗̜̞̝̳̞̹̻̠̱̳͎͙̫̪̤͈̼̯̻̼̝͕̱̖͔̫͍͚̰̟̻͔͖͎̙͓͙̰͖̲͓̞̰̤̠̣̻͇͕̼̥̰̺̮̼̙̭͈͈͔͎͜͜͜͜ͅͅͅ the same game. please type the word corresponding to your choice.")
+    typewrite("[search] this realm for a way to escape")
+    typewrite("[find] a machine similar to the one used by pancake stack")
+    typewrite("[???]")
+    choice = input(">")
+    if choice == "search":
+        searchpath()
+    elif choice == "find":
+        findpath()
+    elif choice ==  "???"
+        typewrite("sorry, reality is not stable enough for this. please choose another option.")
+        game_state["choose???"] = True
+        branch2contpathchoose()
+def branch2contpathchoose()
+    typewrite("this is ą̴̢̨̡̡̨̧̡̨̛̤̪̬̪͔͙̺̖̺̩̻̲̬̣̻̦̰͍̫̯̠͍̗͎̭̩̞̳̰̣͎̮̣̻̈́̔̎̇͊̅͆̎̃̑̽͌̓̾͂͑̾́̊̅̏͐̇͂̿̈̏͌̋̏͋̋̾̍̈́̈́͌̆̍̀͋̉̋̾̐͌̈͊̈́͑̆̓̐̿̓̄̄̓̾͂̚͘̚̕̚͘͝ͅ ̶̡̢̢̡̩̥̜͉̩̱͔̬̯͈͉͚̹͚̞̬͕͕̦̭͉̖͖̭̬̩͔̭̰̦͔̗͎̻̇̍̈́͊̽̋̾̅̑͛̽̔̒̈́̿͐͒͂̃̆̃̿͌͑̈́͐͌͋̆̀̉̋͐̑̀̄̌̉̈́̆͋́̾̌͋̓̌̏̂́̄͘̕͘̕̚̚̚͝͠͝͝͝͠d̴̨̨̧̨̨̨̨̧̧̛̛̛̩̘͓͉̲̲̝͈̙̟̫͙̳̳̭͇̜͇̣̗͎̣̪̮̳̖̫̰̭͔͉̤̱͙͙̪̩̠̻͎̘̬̻̤͙̯̩̪̱͎͕̠͇̭͚̥̺͚̙̬̝̙̙̭̻̠̟̟̼͖̯͈̼̣̖̻̞̬̖̙̠̯̺͉̟̰̲̞̮̣̼͚̜̦͔̞̬̦̻̝̣͎͖͕̮͍̳̠̦̬̥̖̤̦̣͖̹͈͓͖̝͇̭̹̯͔̹̰̞̻̪̣̪̠̘̎͗̊̈́͆́̄̈́̉̇͂̈͂̔́̏̓͌̊́͗̌̽̇̔̽̾̿̏͌̈́̃̈́̃̑̐̽͊̍̃̈́͗͗͑̌͑́̽̐̿̉͌̉͂͛͂̽̃̉̈́̀̑̊͋̇́̔͌̒̽̍͒̈́̉̌̆̐̍̑͐̓̈́̈́̉̾̾̐̑̈́̈́̏̅̂̏̒̒̔̄̅̾̅̈́́͛̎̒̃̇̄̌̎̕̕̚͘͘̕̚̚̕͘͜͜͜͝͝͝͝͠͝͝͝͝͝͝͠͠i̸̢̧̡̨̧̛̛̛̯̰͉̞͎̜̠̹͕͈̺̲̹̱̲̝̺̱͎̘̠̠̥̻̜̳͍̲̦̟̱͉̦̺͚̘̞̣͇͈̫̬̠̺̫̣̱̞̻͍͗̀͋̌̓̐̏̔͒̃̏͒́͒͐̀̏̄̋̀̌̑̊͋̊̓̑͆̌͗́̈́͛̑̆̋́͐́̑́̐̊̇́̓́̾̏͛̓̿̄̋́͌́͐̅̉̾̀̎́̍̓̇̈́̀̓̋̇̃̉̈́̄́̓͆̋͗̏̊̓͌̏̍̓̈́̀͒͌̓̔̀͛̐̓̓̚̚͘̚̕̚͘̚͜͜͜͠͝͝͝͠͠͝͠͝͠͠ͅͅͅf̴̡̡̢̡̡̧̢̛̖̬̗̦̗̯̬͓̫͉̣̩̣̺̜̘̠͈̫̘̻̣̫̯̪̗̦̣̣͚͕͉̳̜͉̟̠͖̭̫̱̀̅̃͆̋̃̀̂̈́̐̈́́̊͌̎̇̇̎̔͋͌̉͛̍̃̌̑͗͗͊́͆̄̓͐̎̊̒͋̃͒̿̓̽̀̌̇͛͋̿̏͘̕͘͘͝͠ͅͅf̸̡̧̡̨̧̢̡̧̢̧̢̡̺͔͖̖̭͎̹̺͈͎͓͙͙̺̗͚̹̻͇͍̗̦̜̬̜̱̱̤̞͍̪̫̖̦̥͉̹͈̝̞̱̝͕͇̤͇͔̜͚̮̳̰͉̜̭̘̙͔͖͍̠͕̪͓̩̳̣̖̱̗̯͙̮̤͖͉͙̤̜͔̼͎̟̜͕̮̻͎̗͓͖̭̱̠̱͕̩̳̬̦̣̟̮̻͉̜̤̞̼̤̩̻͕͈̲̬̖̠̣̹̫͉͉̜̝͓̱̘͖͎̜̳̞̣̌̏̒̒̂̓̀́͐̄͜͜͜ͅͅͅͅẽ̸̢̨̧̧̛͔͙̪͉̻͕̟̻̥̙͇̟̬̬͙͖̤͚̹̱͓̼͚̬̥͓̝͉͔͓̮̖̪͙̗̹̹̩̻̘̩̈́̈́͆͑̾͑̅̀͋̒̎́͊͂͆͑͂̅͂́̓̆̓̃͂̓̇̔̿̒̏̊̽͗͋̈́́̾̄̅̑͋̾̌̒̔̋͂̿̂͑̎͐̃̄̽̐́͛̌̎́͐̾͊̾̔̈́̀͂͑̄̚̕̕͜͠͠͠͠͝͝͠͝ͅͅͅŗ̵̢̧̢̨̨̨̧̨̨̨̨̨̡̡̛̛̛̛̭̗͕͔̫̬͔̗̖̳̬̭̼̼̳͈̞̞͚̖̤͈̫͔͙̗͕͍̯͔̰͉͎̫̪̳̤̝̞͖͉͚̭̲̣̪̱̝͖͎̻̭̫̠̯͔̺͖͈̝͉̝̦̦̪̮͈̠͙͎͚͖̬̯͔̹͚̗̜͖̩̦̹̙̦̼̤̮͈̥̘̼͚͍̣̳̣̲̺̠͍͖̪̱͚̬̺͐̌͆̓̀͊̔̈́̽̌̀͋̌̒̌̏̈́̉͒͗̇̾͌͛̌̿͛͋͌̇̎̒̈́̈́̋̋̾̑̂͌̓̇̀̽̈́̿͗̌̈́̆̉̈́̀̓͛͆̈́͊̓͒̔̐̓̈́̏̀̇̎̾̽͆́̈̄̃̋͆̀̑̈͛̄͊̽̄͌͛̈́͗͌̄͐̐̎͆̓̌̾̓̉̃̿̎͆͂͊̓͑͑̒̌̂̒̌̊̑̚͘̚͘͘͘͘̚͘̚̚̕͘̕͜͜͠͝͝͝͠͝͝͠e̵̹̲͚̼̺͚͔̟̱̱͉͙͙̅͛̃̿n̸̨̨̡̡̢̨̢̢̧̧̧̨̢̛̛̛̛̞̼͈̜̫͕͍͓̩̬̥̱̟̥̠̟͉̦̣̻̫̗̖̞̘̣̭̭̩̼̹͕͎̹̠̲̬̱̺͚͚̜̦̖̱͇̱͓̠̟̝̝͔̪͓͎̙̭͚̬̗̳̺̜̻̪̼̳͕̝̪̼̭̣̘̭͖̗͙̯̬͔͇͈̖̭̙͎͈͙͔͔̱̞̜̙͈͓̼̣̗̼͓̹͎͎̥͉͇̠͎͇͔̬͇͔̠͓̻͎̬̙̯͈̠͔͙̜̱̱̦̞̼͙̯̺͈̖̿͛̾̍͗̿̔̇̏̄̈́̑͋̈͋͑͒̅͆͗͊̓̽͊̒̊́́̽̊͐͋̈́̾̈́̎̄̈́͛̆̉̓͋̀̅̃̀́̓̓͛́͑́̽̈́́̈̂̓̒̓̇̅̔̊͑͒̔̽̔̔̃̑̐̽͑̈́͛̑̋̅̓͒̃͂̒͋̑͂̄̑̈́̽́͛̍̆̒̇̽͐̾̀͛̃͌̈͂̀͗͌̃̊̄̀̂͌͒͊͑̃͋̿̓̏́̒̀̚̚͘͘̚͘̚͘̕͜͜͠͠͠͝͠͝͝͝ͅͅͅt̸̛̛̛̳̣̑̐͗̓́̿̇̈́͗̆̎͑̏̑̿̑̿̽̾̋̓͂̇̇̋̀̇̇̈́̋͐̇͌͛̈́̓̏̒̀̂̒͑̿̑̃̒͊̈́́̈́͒͆̇̊͐̄̂̆͊̐͑̐̃͑͋͂̅͊̎͑͊̉̎͌͋̋̃͊͂̓͂̀͂̓̾͛̉͂̈̓͊͌̎͒͋͌̔̍̔͋̋̌̈̈̾̿̾͂͑͑͌̈́͗̀̽͋͂̔̄̐͐̈́̿̈́͑̉͊̍̾̚͘̕͘͘̕͜͝͠͝͝͝͝͝͝͠ ̶̨̡̡̡̢̡̨̨̨̢̨̧̛̛̛̛͕̩̠͍̯̩͉͈̱̲͕͍͕̪̺̟̱̖̩̠̙͉̳̬̲̭̫̯̥̝͕̯̝̭̗̯̪̳̹̘͍̠̫̩̠̹͈̘̙̙̩̬̺̗͔̳̱̼͚͖͓̞̲̣͓͙̘̮̰̦̭͇͓͍͖̻̭̜̤̠̫͇̥̮̩̠̱͚̝̫̟̪̯͇̪̭̺̄̀̑̄̂̅̽̾͆̍̂͛͌͛͆̍̉̽̎̌̓͂̓͆͒͂̆̃̃̈́̿́̽̔̿̂̿̃̋̊̐͂̈́̈́̅͑̂̾͌̍̾͂̾̄̐̎̓̐̎̆͂̈͂̉̊͗̽̿̓͊͒̓͋͂̇̈́͐̐̓̋̎͗̏̿̀̒̽͋̀̌̄̀̓͘̚̚͘̕̕̚̚̚̕͘̚͜͜͜͜͠͝͠͠͝͝͠͠ͅg̴̨̢̛̛͉̭̖̱̱̺̼̼̮͉̯̦̹͎̬̹̗̟͍͈̞͔̗̮̜̹͙͈͇͉̘̤͙͇̫̐͂̓̏̍̓̅͋͐̎̂̌̾͒̈̅͆͋̽̄͗̄̓̆̿̂̓͛̂̀̑̎́̏́͆͆̊̋͂͛̈́̈̊̉͑̏̓̂̑̒̃̏̇̎̄͒̅̋̀͑̃̌̅̏̾̓̄̌͊̕͘̕͘̚͜͝ͅͅͅą̶̧̛̛̛̛̻͍̱͈̯̙͈̘̻̱̬̠̮̥̲̟͖̙̳̲̲̼̘̪̗͊͐̾̀́̾̈́̇̔̐͌̇̂͊̒̏͋̌͊̂̈͆̀̈́̆̔̿͌̾̑͆̄̃͂͑̀̇̋̍͋̾̽̅͊̈́̐̀̐̈́̎͛͆̐̏̒̅̓̽̄̋͆̈́̐̆̓͊̅̉̅̄͒̈̂̋̓̑̎͛̔͆̃̔̄̑̄́̉͂̅̂̐̈̊̀̎̈́̄̌̀̚̕̚̕̚͘̚͘̚͘͝͝͠͝͝͠͝͠ͅm̸̧̢̡̡̧̢̢̬̖̯̫̲̙̥̻͙͚̘̫͚̳͎͍̘̹͙̮͔̝̪͇̯͕̲͓͔̯̞̲̩̭͇̟̥̗̻͓̟̙̖̲̦̞̬͙̞͉̤͖̮̙͈̺̱̖͎̫̣̪̗̜͔̳̺̘̥̬̺̩̞̘̣̙̼̮̼͇͎͕̥̻̙̜̤̪͕͈̥̞̼̱̖͔̲͎̥̯̭͚̱͚̹͇̬͍̙͇͙̩̝̌͋͆͑́̓̍̋̾̿̂͊͑͂̆͊̈́̕͘͜͜͜͜ͅͅͅȩ̢̨̡̡̨̧̨̨̖͇̼̜̖̟͕̰̖̲̼̹̲̟͖̗̬͈̭̺̲̗̜̞̝̳̞̹̻̠̱̳͎͙̫̪̤͈̼̯̻̼̝͕̱̖͔̫͍͚̰̟̻͔͖͎̙͓͙̰͖̲͓̞̰̤̠̣̻͇͕̼̥̰̺̮̼̙̭͈͈͔͎͜͜͜͜ͅͅͅ the same game. please type the word corresponding to your choice.")
+    typewrite("[search] this realm for a way to escape")
+    typewrite("[find] a machine similar to the one used by pancake stack")
+    choice = input(">")
+    if choice == "search":
+        searchpath()
+    elif choice == "find":
+        findpath()
+    elif choice ==  "???"
+        typewrite("sorry, reality is not stable enough for this. please choose another option.")
+        game_state["choose???"] = True
+        branch2contpathchoose()
+def searchpath()
+    typewrite("you decide to begin a search for a way out of this place.")
+    game_state["branch2_path"] = 1
+    inyourhouse()
+def findpath()
+    typewrite("you decide to attempt to find a machine to help you exit.")
+    game_state["branch2_path"] = 2
+    inyourhouse()
+def beforeyoumustblahblahblah()
+    typewrite("before you can do anything, however, you must leave your house.")
+    typewrite("what will you do?")
+    inyourhouse()
+def inyourhouse()
+    time.sleep(1)
+    typewrite("you may:")
+    typewrite("try to [open] the door")
+    typewrite("[look] for a way to dig out of your house")
+    typewrite("[bang] the door until something happens")
+    typewrite("[break] a window and climb out")
+    typewrite("[try] to break reality")
+    choice = input(">")
+    if choice == "open":
+        typewrite("you try to open the door. it's locked.")
+        inyourhouse()
+    elif choice == "look"
+        typewrite("you look around. you don't see any way to easily dig out.")
+    elif choice == "bang"
+        typewrite("you attempt to bang the door.")
+        time.sleep(2.4726)
+        print("BANG!")
+        time.sleep(1)
+        print("BANG!")
+        time.sleep(2.425190)
+        print("BANG!")
+        typewrite("oh crap. your knuckles are bleeding.")
+        typewrite("you may:")
+        typewrite("[deal] with it and let them bleed")
+        typewrite("[search] the house for bandages")
+        choice = input(">")
+        if choice = "[deal]"
+            typewrite("you decide to let them bleed and continue")
+            game_state["bleeding"] = True
 titlescreen()
-
