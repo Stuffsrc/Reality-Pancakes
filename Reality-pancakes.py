@@ -801,11 +801,11 @@ def inyourhouse():
                     typewrite("unfortunately, most of them fly into your body and lodge themselves between your skin.")
                     typewrite("it feels 1000x worse than having fiberglass in your skin, which is excruciating.")
                     game_state["glassshatter"] = 1
-                elif choice == "don't"
+                elif choice == "don't":
                     typewrite("you decide not to break the window with your fists.")
                     typewrite("honestly, considering the condition they are in, that's probably the best choice")
                     inyourhouse()
-        if choice == "look"
+        if choice == "look":
             tick()
             typewrite("you decide to look for an object to smash the window with.")
             time.sleep(1)
