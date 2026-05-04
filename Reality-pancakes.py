@@ -17,7 +17,7 @@ game_state = {
     "branch2_path": 0,
     "choose???": False,
     "attempt_reality_break": False,
-    "bleeding": False,
+    "bleeding": 0,
     "health": 100,
     "ignored_story": False,
     "glassshatter": True
@@ -688,7 +688,7 @@ def branch2():
     typewrite("#2 you find a machine, one similar or identical to the one used on me. or something else. this is hard though. like, really, really hard. i will explain later.")
     typewrite("#3 would require you to find the un- oh, crap! i've got to take this call, catch you later! good luck lol.")
     time.sleep(3)
-    typewrite("well, pancake stack just ""abandoned"" you. do you still trust him?")
+    typewrite("well, pancake stack just "abandoned" you. do you still trust him?")
     print("y/n")
     choice = input(">")
     if choice == "y":
