@@ -78,15 +78,15 @@ def status():
     print("         T         ")
 def inventorych():
     if inventory["fire_axe"] >= 0:
-        print(f"you have {inventory["fire_axe"]} fire axe(s.)")
+        print(f"you have {inventory['fire_axe']} fire axe(s.)")
     if inventory["cloth"] >= 0:
-        print(f"you have {inventory["cloth"]} cloth(s?)")
+        print(f"you have {inventory['cloth']} cloth(s?)")
     if inventory["stick"] >= 0:
-        print(f"you have {inventory["stick"]} stick(s.)")
+        print(f"you have {inventory['stick']} stick(s.)")
     if inventory["paperslip"] >= 0:
-        print(f"you have {inventory["paperslip"]} slip(s) of paper.")
+        print(f"you have {inventory['paperslip']} slip(s) of paper.")
     if inventory["ammo"] >= 0:
-        print(f"you have {inventory["ammo"]} ammunition(s.)")
+        print(f"you have {inventory['ammo']} ammunition(s.)")
     if all(inventory.get(item, 0) == 0 for item in ["fire_axe", "cloth", "stick", "paperslip", "ammo"]):
         print("you have... nothing.")
     
@@ -104,7 +104,7 @@ def cheaterplace():
     typewrite("ending = cheater")
     time.sleep(3.14)
     typewrite("goodbye.")
-    sys.exit
+    sys.exit()
 #typewriter effect for certain text         
 def typewrite(text, delay=0.1):
     for char in text:
@@ -201,8 +201,9 @@ def intro_scene_bedroom():
     elif choice == "4":
         typewrite("you do nothing and stay exactly as you are right now. nothing exciting happens. ")
         intro_scene_bedroom()
-    else: typewrite("invalid input. please choose a valid option.")
-    intro_scene_bedroom()
+    else: 
+        typewrite("invalid input. please choose a valid option.")
+        intro_scene_bedroom()
 def standbedroom():
     time.sleep(1)
     typewrite("you may:")
