@@ -13,6 +13,7 @@ game_state = {
     "trust": 0,
     "reality_stability": 100,
     "2nd_run": False,
+    "3rd_run": False,
     "bottom_opened": False,
     "branch2_path": 0,
     "choose???": False,
@@ -20,7 +21,8 @@ game_state = {
     "bleeding": 0,
     "health": 100,
     "ignored_story": False,
-    "glassshatter": True
+    "glassshatter": True,
+    "score": 0
 }
 #i will add some ids for each item soon
 #fret not
@@ -124,9 +126,41 @@ difflevel = 2
 #ADDME add a way to have SFX at certain points in the game, and also some music.
 #TEMPSOLUTION for now the game is locked on medium until i can make the variable storing difficulty work properly. sorry for now
 
-def deathending
+def deathending():
+    typewrite("you died.")
+    typewrite(f"score = {game_state["score"]}")
+    typewrite("ending = lol, you died")
+    typewrite("play again for another ending!")
+    typewrite("(something still feels a bit incomplete...)")
+    time.sleep(1)
+    print("try again?")
+    print("y yes - n no")
+    choice = input(">")
+
+    if choice == "y":
+        if game_state["2nd_run"] = True:
+            game_state["3rd_run"] = True
+            game_state["2nd_run"] = False
+            intro()
+        elif game_state["2nd_run"] = False:
+            if game_state["3rd_run"] = False:
+               intro()
+        else:
+            intro()
+        
+    elif choice == "n":
+        print("are you sure? if you close the game, you will have to play the first part again if you want to reach the True Game again.")
+        print("quit anyway?")
+        print("[continue] do - [do not] do not")
+        choice = choice(">")
+        if choice == "continue":
+            sys.exit()
+        elif choice == "do not"
+            print("alright, restarting...")
+            intro()
+            
 def titlescreen():
-    typewrite("Reality Pancakes (v0.5.1 pre-alpha)")
+    typewrite("Reality Pancakes (v0.6.5 pre-alpha)")
     typewrite("NOTE: this is the second generation of the game. expect some serious and potentially experience-ruining bugs. please report any on the github repository! you'll know what i mean if you're an AUTHORISED playtester!")
     typewrite("also, this game is intended to be played in 1 sitting, hence the current lack of save functionality. i may change this later, but that's it for now.")
     time.sleep(2)
@@ -513,9 +547,9 @@ def surviveending():
     time.sleep(5)
     typewrite("you survived! congrats!")
     time.sleep(1)
-    typewrite("score = 75")
+    typewrite(f"score = {game_state["score"]}")
     time.sleep(1)
-    typewrite("ending = you survived.")
+    typewrite("ending = survived.")
     time.sleep(1)
     typewrite("try again for another ending!")
     time.sleep(1)
