@@ -60,9 +60,12 @@ def status():
     print("  ---------------  ")
     print(" ----------------- ")
     print("-----game info-----")
+    print("-------PLAYER-------")
     print(f"health? {game_state['health']}")
+    print(f"score? {game_state['score']}")
     print(f"bleeding? {game_state['bleeding']}")
     print(f"glass in your arm? {game_state['glassshatter']}")
+    print("--------GAME--------")
     print(f"difficulty? {game_state['difflevel']}")
     print(f"stability? {game_state['reality_stability']}")
     print("-----game info-----")
@@ -105,6 +108,7 @@ def cheaterplace():
     time.sleep(3.14)
     typewrite("goodbye.")
     sys.exit()
+    
 #typewriter effect for certain text         
 def typewrite(text, delay=0.1):
     for char in text:
@@ -113,11 +117,14 @@ def typewrite(text, delay=0.1):
         print(char, end='', flush=True)
         time.sleep(delay)
     print()  # Move to the next line once finished
+    
 #for now, difflevel is defined as 2 for medium until i can get the defining on the go sort of thing to work.
 #if you have any tips to make this work, pls help. thx!
 difflevel = 2
 #ADDME add a way to have SFX at certain points in the game, and also some music.
 #TEMPSOLUTION for now the game is locked on medium until i can make the variable storing difficulty work properly. sorry for now
+
+def deathending
 def titlescreen():
     typewrite("Reality Pancakes (v0.5.1 pre-alpha)")
     typewrite("NOTE: this is the second generation of the game. expect some serious and potentially experience-ruining bugs. please report any on the github repository! you'll know what i mean if you're an AUTHORISED playtester!")
