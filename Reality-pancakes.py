@@ -7,19 +7,36 @@ import random
 import pygame
 import pathlib
 pygame.init()
-
-
-# 1. Get the absolute path to the directory where THIS script is saved
-BASE_PATH = pathlib.Path(__file__).parent.resolve()
-
-# 2. Join it with your asset folder or filename
-sound_path = BASE_PATH / "assets" / "musique" / "music.musicdemo.ogg"
-
-# 3. Load it into pygame.mixer
 pygame.mixer.init()
-sound = pygame.mixer.music(str(sound_path)) # Convert Path object to string
 
 
+def playdemosong()
+        # 1. Get the absolute path to the directory where THIS script is saved
+    BASE_PATH = pathlib.Path(__file__).parent.resolve()
+    
+    # 2. Join it with your asset folder or filename
+    sound_path = BASE_PATH / "assets" / "musique" / "music.musicdemo.ogg"
+    
+    # 3. Load it into pygame.mixer
+    sound = pygame.mixer.music.load(str(sound_path)) # convert path to string
+    
+    pygame.mixer.music.play(loops=-1)
+    
+    
+def stop()
+    pygame.mixer.music.stop
+    
+    
+def togglepause()
+    if music_state["paused"] = False
+        pygame.mixer.music.pause
+    elif music_state["paused"] = True
+        pygame.mixer.music.unpause
+
+
+music_state = {
+    "paused": False
+}
 #starting info for le jeux vidéo.
 #please note that for the flag "branch2path" 0 is default.
 #it will be set to "1" if the player chooses searchpath and "2" if they choose findpath.
