@@ -3,6 +3,8 @@ import time
 import webbrowser
 import os
 import json
+import random
+import pygame
 #starting info for le jeux vidéo.
 #please note that for the flag "branch2path" 0 is default.
 #it will be set to "1" if the player chooses searchpath and "2" if they choose findpath.
@@ -851,4 +853,23 @@ def inyourhouse():
             tick()
             typewrite("you decide to look for an object to smash the window with.")
             time.sleep(1)
+            typewrite("you see a paperclip on the floor. hella useful eh...")
+            time.sleep(0.5)
+            typewrite("you keep searching for something that will actually break the window.")
+            time.sleep(1)
+            typewrite("you find a stick!")
+            time.sleep(1)
+            typewrite("this will have to do. you prepare to take a swing at the window.")
+            typewrite("alright, ready.")
+            time.s;eep(1)
+            typewrite("3...")
+            time.sleep(1)
+            typewrite("2...")
+            time.sleep(1)
+            typewrite("1...")
+            typewrite("you begin to swing the stick.")
+            typewrite("bam! the window shatters into lots of miniscule fragments of glass.")
+            time.sleep(0.5)
+            typewrite("relieved that you didn't have to break the window with your fists, you climb out of the window and into the world outside.")
+            outsideworld()
 titlescreen()
