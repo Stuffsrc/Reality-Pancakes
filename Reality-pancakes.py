@@ -138,12 +138,12 @@ def deathending():
     choice = input(">")
 
     if choice == "y":
-        if game_state["2nd_run"] = True:
+        if game_state["2nd_run"] == True:
             game_state["3rd_run"] = True
             game_state["2nd_run"] = False
             intro()
-        elif game_state["2nd_run"] = False:
-            if game_state["3rd_run"] = False:
+        elif game_state["2nd_run"] == False:
+            if game_state["3rd_run"] == False:
                intro()
         else:
             intro()
@@ -155,7 +155,7 @@ def deathending():
         choice = choice(">")
         if choice == "continue":
             sys.exit()
-        elif choice == "do not"
+        elif choice == "do not":
             print("alright, restarting...")
             intro()
             
@@ -729,7 +729,7 @@ def branch2():
     typewrite("#2 you find a machine, one similar or identical to the one used on me. or something else. this is hard though. like, really, really hard. i will explain later.")
     typewrite("#3 would require you to find the un- oh, crap! i've got to take this call, catch you later! good luck lol.")
     time.sleep(3)
-    typewrite("well, pancake stack just "abandoned" you. do you still trust him?")
+    typewrite("well, pancake stack just 'abandoned' you. do you still trust him?")
     print("y/n")
     choice = input(">")
     if choice == "y":
