@@ -9,6 +9,12 @@ import pathlib
 pygame.init()
 pygame.mixer.init()
 
+def clearterm():
+    """Clear the terminal screen on Windows, Linux, or macOS."""
+    try:
+        os.system('cls' if os.name == 'nt' else 'clear')
+    except Exception as e:
+        print(f"Error clearing terminal: {e}")
 
 #for good measures
   # 1. Get the absolute path to the directory where THIS script is saved
@@ -23,7 +29,7 @@ def soundtest():
     pygame.mixer.music.play(loops=-1)
 
 
-def playdemosong():
+def playdemomusic():
         # 1. Get the absolute path to the directory where THIS script is saved
     BASE_PATH = pathlib.Path(__file__).parent.resolve()
     
@@ -36,11 +42,11 @@ def playdemosong():
     pygame.mixer.music.play(loops=-1)
     
     
-def stop():
+def stopmusic():
     pygame.mixer.music.stop
     
     
-def togglepause():
+def togglepausemusic():
     if music_state["paused"] == False:
         pygame.mixer.music.pause
     elif music_state["paused"] == True:
@@ -268,7 +274,9 @@ def deathending():
             intro()
             
 def titlescreen():
+    clearterm()
     set_scene("titlescreen")
+    playdemomusic()
     typewrite("Reality Pancakes (v0.6.5 pre-alpha)")
     typewrite("NOTE: this is the second generation of the game. expect some serious and potentially experience-ruining bugs. please report any on the github repository! you'll know what i mean if you're an AUTHORISED playtester!")
     typewrite("also, this game is intended to be played in 1 sitting, hence the current lack of save functionality. i may change this later, but that's it for now.")
@@ -296,6 +304,7 @@ def intro():
         print("good luck!")
         time.sleep(2) 
         game_state["difflevel"] = 1
+        stopmusic()
         intro_scene_bedroom()
     elif difficulty == "2":
         print("you have chosen medium difficulty.")
@@ -303,6 +312,7 @@ def intro():
         print("good luck!")
         time.sleep(2)
         game_state["difflevel"] = 2
+        stopmusic()
         intro_scene_bedroom()
     elif difficulty == "3":
         print("you have chosen hard difficulty.")
@@ -310,6 +320,7 @@ def intro():
         print("good luck!")
         time.sleep(2)
         game_state["difflevel"] = 3
+        stopmusic()
         intro_scene_bedroom()
     elif difficulty == "4":
         print("you have chosen absolute nightmare! (you are going to die btw)")
@@ -317,8 +328,10 @@ def intro():
         print("good luck!")
         time.sleep(2)
         game_state["difflevel"] = 4
+        stopmusic()
         intro_scene_bedroom()
     elif difficulty== "5":
+        stopmusic()
         if game_state["2nd_run"]:
             typewrite("wait...")
             time.sleep(2)
@@ -333,6 +346,7 @@ def intro():
         print("invalid input. please choose a valid difficulty.")
         intro()
 def intro_scene_bedroom():
+    stopmusic()
     set_scene("intro_scene_bedroom")
     typewrite("your eyes open. you look around. you're in your bed, as usual when you wake up.")
     time.sleep(2)
@@ -1034,5 +1048,4 @@ def inyourhouse():
 def outsideworld():
     typewrite("you are now outside. you see a path leading into the distance, winding very far that you cannot see an end.")
     tick()
-
-soundtest()
+titlescreen()
