@@ -104,9 +104,9 @@ def save_game():
     try:
         with open(SAVE_PATH, "w", encoding="utf-8") as save_file:
             json.dump(save_data, save_file, indent=2)
-        print(f"Saved game to {SAVE_PATH.name}")
     except Exception as exc:
-        print("Failed to save game:", exc)
+        print("Failed to save game, this is likely due to a permissions error:")
+        print(exc)
 
 
 def load_game():
