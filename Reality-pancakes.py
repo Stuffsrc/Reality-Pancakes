@@ -8,9 +8,20 @@ import pygame
 import pathlib
 pygame.init()
 pygame.mixer.init()
+
+
+#for good measures
+  # 1. Get the absolute path to the directory where THIS script is saved
+BASE_PATH = pathlib.Path(__file__).parent.resolve()
+    
+# 2. Join it with your asset folder or filename
+sound_path = BASE_PATH / "assets" / "musique" / "music.musicdemo.ogg"
+
+
 def soundtest():
-    pygame.mixer.music.load("assets/musique/music.musicdemo.ogg")
+    pygame.mixer.music.load(str(sound_path))
     pygame.mixer.music.play(loops=-1)
+
 
 def playdemosong():
         # 1. Get the absolute path to the directory where THIS script is saved
@@ -1023,4 +1034,5 @@ def inyourhouse():
 def outsideworld():
     typewrite("you are now outside. you see a path leading into the distance, winding very far that you cannot see an end.")
     tick()
+
 soundtest()
