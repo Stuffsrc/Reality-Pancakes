@@ -76,7 +76,8 @@ battle_state = {
     "tension": 0,
     "love": 0,
     "hatred": 0,
-    "beyond_sparing": False
+    "beyond_sparing": False,
+    "enemyhp": 100
 }
 game_state = {
     "difflevel": 0,
@@ -1096,6 +1097,7 @@ def outsideworld():
     typewrite("the stick starts to get uncomfortably close to you.")
     stickbattle()
 def stickbattle():
+    battle_state["enemyhp"] = 50
     playbattlemusic()
     print("stick draws near!")
     print("your turn.")
@@ -1108,4 +1110,13 @@ def stickbattle():
     print("[try] to slam a rock into the stick with telekenisis")
     print("[sit] there and skip a turn")
     print("[negotiate] with the stick")
+    choice = ask_input(">")
+    if choice == "attack":
+        tick()
+        typewrite("you take a swing at the stick using those fine knuckles of thine.")
+        print("bam! 10 damage to the stick.")
+        battle_state["enemyhp"] -= 10
+    elif choice == "search":
+        tick()
+        print("you searched around the vicinity in search of battle apparati.")
 titlescreen()
