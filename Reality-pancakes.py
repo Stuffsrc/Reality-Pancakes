@@ -21,7 +21,7 @@ def clearterm():
 BASE_PATH = pathlib.Path(__file__).parent.resolve()
     
 # 2. Join it with your asset folder or filename
-sound_path = BASE_PATH / "assets" / "musique" / "music.musicdemo.ogg"
+sound_path = BASE_PATH / "assets" / "musique" / "title.wav"
 
 
 def soundtest():
@@ -34,7 +34,7 @@ def playdemomusic():
     BASE_PATH = pathlib.Path(__file__).parent.resolve()
     
     # 2. Join it with your asset folder or filename
-    sound_path = BASE_PATH / "assets" / "musique" / "music.musicdemo.ogg"
+    sound_path = BASE_PATH / "assets" / "musique" / "title.wav"
     
     # 3. Load it into pygame.mixer
     sound = pygame.mixer.music.load(str(sound_path)) # convert path to string
