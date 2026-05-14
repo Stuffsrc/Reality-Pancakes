@@ -72,6 +72,12 @@ music_state = {
 #starting info for le jeux vidéo.
 #please note that for the flag "branch2path" 0 is default.
 #it will be set to "1" if the player chooses searchpath and "2" if they choose findpath.
+battle_state = {
+    "tension": 0,
+    "love": 0,
+    "hatred": 0,
+    "beyond_sparing": False
+}
 game_state = {
     "difflevel": 0,
     "ate_pancakes": False,
@@ -1092,4 +1098,14 @@ def outsideworld():
 def stickbattle():
     playbattlemusic()
     print("stick draws near!")
+    print("your turn.")
+    time.sleep(0.5)
+    typewrite("you may:")
+    if game_state["bleeding"] == False:
+        print("[attack] the stick with your fists")
+    print("[search] for battle apparati")
+    print("[run] like hell from the stick")
+    print("[try] to slam a rock into the stick with telekenisis")
+    print("[sit] there and skip a turn")
+    print("[negotiate] with the stick")
 titlescreen()
