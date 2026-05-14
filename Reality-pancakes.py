@@ -43,14 +43,14 @@ def playdemomusic():
     
     
 def stopmusic():
-    pygame.mixer.music.stop
+    pygame.mixer.music.stop()
     
     
 def togglepausemusic():
     if music_state["paused"] == False:
-        pygame.mixer.music.pause
+        pygame.mixer.music.pause()
     elif music_state["paused"] == True:
-        pygame.mixer.music.unpause
+        pygame.mixer.music.unpause()
 
 
 music_state = {
