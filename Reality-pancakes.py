@@ -40,6 +40,19 @@ def playdemomusic():
     sound = pygame.mixer.music.load(str(sound_path)) # convert path to string
     
     pygame.mixer.music.play(loops=-1)
+
+def playbattlemusic():
+    #stopping any music that might be playing before starting the battle music, to prevent any potential overlapping of tracks.
+    stopmusic()
+    BASE_PATH = pathlib.Path(__file__).parent.resolve()
+    
+    # 2. Join it with asset
+    sound_path = BASE_PATH / "assets" / "musique" / "battle.wav"
+    
+    # 3. Load into mixer
+    sound = pygame.mixer.music.load(str(sound_path)) # converting path to string
+    
+    pygame.mixer.music.play(loops=-1)
     
     
 def stopmusic():
@@ -282,9 +295,7 @@ def titlescreen():
     set_scene("titlescreen")
     playdemomusic()
     typewrite("Reality Pancakes (v0.6.5 pre-alpha)")
-    typewrite("NOTE: this is the second generation of the game. expect some serious and potentially experience-ruining bugs. please report any on the github repository! you'll know what i mean if you're an AUTHORISED playtester!")
-    typewrite("also, this game is intended to be played in 1 sitting, hence the current lack of save functionality. i may change this later, but that's it for now.")
-    time.sleep(2)
+    typewrite("NOTE: this is the third generation of the game (has pygame.) expect some serious and potentially experience-ruining bugs. please report any on the github repository! you'll know what i mean if you're an AUTHORISED playtester!")
     if SAVE_PATH.exists():
         print("Load saved game? y/n")
         choice = ask_input(">")
@@ -1047,21 +1058,25 @@ def inyourhouse():
         time.sleep(1)
         typewrite("whatever tf that means lol.")
         time.sleep(1)
+        tick()
         typewrite("you tried Reality Break α.")
         time.sleep(1)
         typewrite("you were protected by the psychic shield.")
         time.sleep(1)
         typewrite("haha just kidding loser it's not 1995 anymore, it's 2009! PSI does not work anymore lol.")
+        tick()
         typewrite("determined, you try Reality Break β.")
         time.sleep(1)
         typewrite("you were protected by the psychic shield.")
         time.sleep(1)
         typewrite("haha why did you think that would work?")
+        tick()
         typewrite("you try Reality Break γ.")
         time.sleep(1)
         typewrite("you were protected by the psychic shield.")
         time.sleep(1)
         typewrite("ok please stop lol.")
+        tick()
         typewrite("you try Reality Break Ω.")
         time.sleep(1)
         typewrite("you were protected by the psychic shield.")
@@ -1069,6 +1084,12 @@ def inyourhouse():
         typewrite("ok seriously stop. there is nothing you can do. please just try something else.")
         inyourhouse()
 def outsideworld():
-    typewrite("you are now outside. you see a path leading into the distance, winding very far that you cannot see an end.")
-    tick()
+    typewrite("you are now outside. you see a path leading into the distance, winding very far that you cannot see an end. you feel this path may lead you somewhere safe.")
+    typewrite("you decide to follow the path.")
+    typewrite("you hear footsteps. or... sticksteps!? no thats... a stick? is the stick actually... walking... dude...")
+    typewrite("the stick starts to get uncomfortably close to you.")
+    stickbattle()
+def stickbattle():
+    playbattlemusic()
+    print("stick draws near!")
 titlescreen()
