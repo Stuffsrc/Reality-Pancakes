@@ -14,3 +14,27 @@ below are all the wonderful people who have contributed so far. this will be upd
 
 ---NOTE---
 just in case you feel weird from this game, just know i love you (platonically ofc) very much and you are so unbelievably valued by many people, way more than you can ever imagine by many people including me. dont feel bad. you are a wonderful person. i will be sending many platonic cuddles to your area :3 and you deserve so much happiness. please take really good care of yourself because youcare a wonderful person. please dont play the game if you think it may cause you to believe anything other than this. seriously! have a wonderful day or evening and please remember this. if you are ever worried, know you will be alright. remember that somewhere in the world theres a programmar (femboy?) who loves you (platonically) for the wonderful human being you are. keep doing good in the world, i am rooting for you >:3 owo :3 image unrelated if existent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<img width="1200" height="1185" alt="4452" src="https://github.com/user-attachments/assets/e24c9eaf-c89a-4339-9500-8b93fbab1c6d" />
