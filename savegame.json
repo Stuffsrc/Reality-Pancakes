@@ -1,0 +1,29 @@
+{
+  "current_scene": "intro_scene_bedroom",
+  "game_state": {
+    "difflevel": 1,
+    "ate_pancakes": false,
+    "opened_top_drawer": false,
+    "trust": 0,
+    "reality_stability": 100,
+    "2nd_run": false,
+    "3rd_run": false,
+    "bottom_opened": false,
+    "branch2_path": 0,
+    "choose???": false,
+    "attempt_reality_break": false,
+    "bleeding": 0,
+    "health": 100,
+    "ignored_story": false,
+    "glassshatter": true,
+    "score": 0,
+    "texspeed": 0.1
+  },
+  "inventory": {
+    "fire_axe": 0,
+    "cloth": 0,
+    "stick": 0,
+    "paperslip": 0,
+    "ammo": 0
+  }
+}

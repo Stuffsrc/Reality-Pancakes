@@ -4,7 +4,7 @@ import webbrowser
 import os
 import json
 import random
-import pygame
+import pygame # type: ignore
 import pathlib
 pygame.init()
 pygame.mixer.init()
@@ -95,7 +95,8 @@ game_state = {
     "health": 100,
     "ignored_story": False,
     "glassshatter": True,
-    "score": 0
+    "score": 0,
+    "texspeed": 0.1,
 }
 #i will add some ids for each item soon
 #fret not
@@ -167,6 +168,8 @@ def ask_input(prompt):
             status()
         elif player_input.lower() in {"inventory", "inv", "items"}:
             inventorych()
+        elif player_input.lower() in {"setup", "settings", "options", "parameters", "set"}:
+            settings()
             continue
         return player_input
 
@@ -250,7 +253,7 @@ def cheaterplace():
     sys.exit()
     
 #typewriter effect for certain text         
-def typewrite(text, delay=0.1):
+def typewrite(text, delay=0.01):
     for char in text:
         # Use end='' to stay on the same line
         # Use flush=True to force the output to appear immediately
@@ -368,6 +371,9 @@ def intro():
     else:
         print("invalid input. please choose a valid difficulty.")
         intro()
+def texspeed():
+    print("please choose the speed of the text. you may select 1, 2, or 3.")
+
 def intro_scene_bedroom():
     clearterm()
     stopmusic()
@@ -926,7 +932,7 @@ def branch2cont():
     time.sleep(1)
     typewrite("alright, so what are you going to try?")
     time.sleep(1)
-    typewrite("this is ą̴̢̨̡̡̨̧̡̨̛̤̪̬̪͔͙̺̖̺̩̻̲̬̣̻̦̰͍̫̯̠͍̗͎̭̩̞̳̰̣͎̮̣̻̈́̔̎̇͊̅͆̎̃̑̽͌̓̾͂͑̾́̊̅̏͐̇͂̿̈̏͌̋̏͋̋̾̍̈́̈́͌̆̍̀͋̉̋̾̐͌̈͊̈́͑̆̓̐̿̓̄̄̓̾͂̚͘̚̕̚͘͝ͅ ̶̡̢̢̡̩̥̜͉̩̱͔̬̯͈͉͚̹͚̞̬͕͕̦̭͉̖͖̭̬̩͔̭̰̦͔̗͎̻̇̍̈́͊̽̋̾̅̑͛̽̔̒̈́̿͐͒͂̃̆̃̿͌͑̈́͐͌͋̆̀̉̋͐̑̀̄̌̉̈́̆͋́̾̌͋̓̌̏̂́̄͘̕͘̕̚̚̚͝͠͝͝͝͠d̴̨̨̧̨̨̨̨̧̧̛̛̛̩̘͓͉̲̲̝͈̙̟̫͙̳̳̭͇̜͇̣̗͎̣̪̮̳̖̫̰̭͔͉̤̱͙͙̪̩̠̻͎̘̬̻̤͙̯̩̪̱͎͕̠͇̭͚̥̺͚̙̬̝̙̙̭̻̠̟̟̼͖̯͈̼̣̖̻̞̬̖̙̠̯̺͉̟̰̲̞̮̣̼͚̜̦͔̞̬̦̻̝̣͎͖͕̮͍̳̠̦̬̥̖̤̦̣͖̹͈͓͖̝͇̭̹̯͔̹̰̞̻̪̣̪̠̘̎͗̊̈́͆́̄̈́̉̇͂̈͂̔́̏̓͌̊́͗̌̽̇̔̽̾̿̏͌̈́̃̈́̃̑̐̽͊̍̃̈́͗͗͑̌͑́̽̐̿̉͌̉͂͛͂̽̃̉̈́̀̑̊͋̇́̔͌̒̽̍͒̈́̉̌̆̐̍̑͐̓̈́̈́̉̾̾̐̑̈́̈́̏̅̂̏̒̒̔̄̅̾̅̈́́͛̎̒̃̇̄̌̎̕̕̚͘͘̕̚̚̕͘͜͜͜͝͝͝͝͠͝͝͝͝͝͝͠͠i̸̢̧̡̨̧̛̛̛̯̰͉̞͎̜̠̹͕͈̺̲̹̱̲̝̺̱͎̘̠̠̥̻̜̳͍̲̦̟̱͉̦̺͚̘̞̣͇͈̫̬̠̺̫̣̱̞̻͍͗̀͋̌̓̐̏̔͒̃̏͒́͒͐̀̏̄̋̀̌̑̊͋̊̓̑͆̌͗́̈́͛̑̆̋́͐́̑́̐̊̇́̓́̾̏͛̓̿̄̋́͌́͐̅̉̾̀̎́̍̓̇̈́̀̓̋̇̃̉̈́̄́̓͆̋͗̏̊̓͌̏̍̓̈́̀͒͌̓̔̀͛̐̓̓̚̚͘̚̕̚͘̚͜͜͜͠͝͝͝͠͠͝͠͝͠͠ͅͅͅf̴̡̡̢̡̡̧̢̛̖̬̗̦̗̯̬͓̫͉̣̩̣̺̜̘̠͈̫̘̻̣̫̯̪̗̦̣̣͚͕͉̳̜͉̟̠͖̭̫̱̀̅̃͆̋̃̀̂̈́̐̈́́̊͌̎̇̇̎̔͋͌̉͛̍̃̌̑͗͗͊́͆̄̓͐̎̊̒͋̃͒̿̓̽̀̌̇͛͋̿̏͘̕͘͘͝͠ͅͅf̸̡̧̡̨̧̢̡̧̢̧̢̡̺͔͖̖̭͎̹̺͈͎͓͙͙̺̗͚̹̻͇͍̗̦̜̬̜̱̱̤̞͍̪̫̖̦̥͉̹͈̝̞̱̝͕͇̤͇͔̜͚̮̳̰͉̜̭̘̙͔͖͍̠͕̪͓̩̳̣̖̱̗̯͙̮̤͖͉͙̤̜͔̼͎̟̜͕̮̻͎̗͓͖̭̱̠̱͕̩̳̬̦̣̟̮̻͉̜̤̞̼̤̩̻͕͈̲̬̖̠̣̹̫͉͉̜̝͓̱̘͖͎̜̳̞̣̌̏̒̒̂̓̀́͐̄͜͜͜ͅͅͅͅẽ̸̢̨̧̧̛͔͙̪͉̻͕̟̻̥̙͇̟̬̬͙͖̤͚̹̱͓̼͚̬̥͓̝͉͔͓̮̖̪͙̗̹̹̩̻̘̩̈́̈́͆͑̾͑̅̀͋̒̎́͊͂͆͑͂̅͂́̓̆̓̃͂̓̇̔̿̒̏̊̽͗͋̈́́̾̄̅̑͋̾̌̒̔̋͂̿̂͑̎͐̃̄̽̐́͛̌̎́͐̾͊̾̔̈́̀͂͑̄̚̕̕͜͠͠͠͠͝͝͠͝ͅͅͅŗ̵̢̧̢̨̨̨̧̨̨̨̨̨̡̡̛̛̛̛̭̗͕͔̫̬͔̗̖̳̬̭̼̼̳͈̞̞͚̖̤͈̫͔͙̗͕͍̯͔̰͉͎̫̪̳̤̝̞͖͉͚̭̲̣̪̱̝͖͎̻̭̫̠̯͔̺͖͈̝͉̝̦̦̪̮͈̠͙͎͚͖̬̯͔̹͚̗̜͖̩̦̹̙̦̼̤̮͈̥̘̼͚͍̣̳̣̲̺̠͍͖̪̱͚̬̺͐̌͆̓̀͊̔̈́̽̌̀͋̌̒̌̏̈́̉͒͗̇̾͌͛̌̿͛͋͌̇̎̒̈́̈́̋̋̾̑̂͌̓̇̀̽̈́̿͗̌̈́̆̉̈́̀̓͛͆̈́͊̓͒̔̐̓̈́̏̀̇̎̾̽͆́̈̄̃̋͆̀̑̈͛̄͊̽̄͌͛̈́͗͌̄͐̐̎͆̓̌̾̓̉̃̿̎͆͂͊̓͑͑̒̌̂̒̌̊̑̚͘̚͘͘͘͘̚͘̚̚̕͘̕͜͜͠͝͝͝͠͝͝͠e̵̹̲͚̼̺͚͔̟̱̱͉͙͙̅͛̃̿n̸̨̨̡̡̢̨̢̢̧̧̧̨̢̛̛̛̛̞̼͈̜̫͕͍͓̩̬̥̱̟̥̠̟͉̦̣̻̫̗̖̞̘̣̭̭̩̼̹͕͎̹̠̲̬̱̺͚͚̜̦̖̱͇̱͓̠̟̝̝͔̪͓͎̙̭͚̬̗̳̺̜̻̪̼̳͕̝̪̼̭̣̘̭͖̗͙̯̬͔͇͈̖̭̙͎͈͙͔͔̱̞̜̙͈͓̼̣̗̼͓̹͎͎̥͉͇̠͎͇͔̬͇͔̠͓̻͎̬̙̯͈̠͔͙̜̱̱̦̞̼͙̯̺͈̖̿͛̾̍͗̿̔̇̏̄̈́̑͋̈͋͑͒̅͆͗͊̓̽͊̒̊́́̽̊͐͋̈́̾̈́̎̄̈́͛̆̉̓͋̀̅̃̀́̓̓͛́͑́̽̈́́̈̂̓̒̓̇̅̔̊͑͒̔̽̔̔̃̑̐̽͑̈́͛̑̋̅̓͒̃͂̒͋̑͂̄̑̈́̽́͛̍̆̒̇̽͐̾̀͛̃͌̈͂̀͗͌̃̊̄̀̂͌͒͊͑̃͋̿̓̏́̒̀̚̚͘͘̚͘̚͘̕͜͜͠͠͠͝͠͝͝͝ͅͅͅt̸̛̛̛̳̣̑̐͗̓́̿̇̈́͗̆̎͑̏̑̿̑̿̽̾̋̓͂̇̇̋̀̇̇̈́̋͐̇͌͛̈́̓̏̒̀̂̒͑̿̑̃̒͊̈́́̈́͒͆̇̊͐̄̂̆͊̐͑̐̃͑͋͂̅͊̎͑͊̉̎͌͋̋̃͊͂̓͂̀͂̓̾͛̉͂̈̓͊͌̎͒͋͌̔̍̔͋̋̌̈̈̾̿̾͂͑͑͌̈́͗̀̽͋͂̔̄̐͐̈́̿̈́͑̉͊̍̾̚͘̕͘͘̕͜͝͠͝͝͝͝͝͝͠ ̶̨̡̡̡̢̡̨̨̨̢̨̧̛̛̛̛͕̩̠͍̯̩͉͈̱̲͕͍͕̪̺̟̱̖̩̠̙͉̳̬̲̭̫̯̥̝͕̯̝̭̗̯̪̳̹̘͍̠̫̩̠̹͈̘̙̙̩̬̺̗͔̳̱̼͚͖͓̞̲̣͓͙̘̮̰̦̭͇͓͍͖̻̭̜̤̠̫͇̥̮̩̠̱͚̝̫̟̪̯͇̪̭̺̄̀̑̄̂̅̽̾͆̍̂͛͌͛͆̍̉̽̎̌̓͂̓͆͒͂̆̃̃̈́̿́̽̔̿̂̿̃̋̊̐͂̈́̈́̅͑̂̾͌̍̾͂̾̄̐̎̓̐̎̆͂̈͂̉̊͗̽̿̓͊͒̓͋͂̇̈́͐̐̓̋̎͗̏̿̀̒̽͋̀̌̄̀̓͘̚̚͘̕̕̚̚̚̕͘̚͜͜͜͜͠͝͠͠͝͝͠͠ͅg̴̨̢̛̛͉̭̖̱̱̺̼̼̮͉̯̦̹͎̬̹̗̟͍͈̞͔̗̮̜̹͙͈͇͉̘̤͙͇̫̐͂̓̏̍̓̅͋͐̎̂̌̾͒̈̅͆͋̽̄͗̄̓̆̿̂̓͛̂̀̑̎́̏́͆͆̊̋͂͛̈́̈̊̉͑̏̓̂̑̒̃̏̇̎̄͒̅̋̀͑̃̌̅̏̾̓̄̌͊̕͘̕͘̚͜͝ͅͅͅą̶̧̛̛̛̛̻͍̱͈̯̙͈̘̻̱̬̠̮̥̲̟͖̙̳̲̲̼̘̪̗͊͐̾̀́̾̈́̇̔̐͌̇̂͊̒̏͋̌͊̂̈͆̀̈́̆̔̿͌̾̑͆̄̃͂͑̀̇̋̍͋̾̽̅͊̈́̐̀̐̈́̎͛͆̐̏̒̅̓̽̄̋͆̈́̐̆̓͊̅̉̅̄͒̈̂̋̓̑̎͛̔͆̃̔̄̑̄́̉͂̅̂̐̈̊̀̎̈́̄̌̀̚̕̚̕̚͘̚͘̚͘͝͝͠͝͝͠͝͠ͅm̸̧̢̡̡̧̢̢̬̖̯̫̲̙̥̻͙͚̘̫͚̳͎͍̘̹͙̮͔̝̪͇̯͕̲͓͔̯̞̲̩̭͇̟̥̗̻͓̟̙̖̲̦̞̬͙̞͉̤͖̮̙͈̺̱̖͎̫̣̪̗̜͔̳̺̘̥̬̺̩̞̘̣̙̼̮̼͇͎͕̥̻̙̜̤̪͕͈̥̞̼̱̖͔̲͎̥̯̭͚̱͚̹͇̬͍̙͇͙̩̝̌͋͆͑́̓̍̋̾̿̂͊͑͂̆͊̈́̕͘͜͜͜͜ͅͅͅȩ̢̨̡̡̨̧̨̨̖͇̼̜̖̟͕̰̖̲̼̹̲̟͖̗̬͈̭̺̲̗̜̞̝̳̞̹̻̠̱̳͎͙̫̪̤͈̼̯̻̼̝͕̱̖͔̫͍͚̰̟̻͔͖͎̙͓͙̰͖̲͓̞̰̤̠̣̻͇͕̼̥̰̺̮̼̙̭͈͈͔͎͜͜͜͜ͅͅͅ the same game. please type the word corresponding to your choice.")
+    typewrite("this is |a| /é.dif45ferenyt thr3ge  a differessnt si2f9-àhelpefkame gooiaame, sure, damn it. please type the word corresponding to your choice.")
     typewrite("[search] this realm for a way to escape")
     typewrite("[find] a machine similar to the one used by pancake stack")
     typewrite("[???]")
@@ -1095,12 +1101,13 @@ def outsideworld():
     typewrite("you decide to follow the path.")
     typewrite("you hear footsteps. or... sticksteps!? no thats... a stick? is the stick actually... walking... dude...")
     typewrite("the stick starts to get uncomfortably close to you.")
-    stickbattle()
-def stickbattle():
+    stickbattlestarter()
+def stickbattlestarter():
     battle_state["enemyhp"] = 50
     playbattlemusic()
     print("stick draws near!")
     print("your turn.")
+def stickbattle():
     time.sleep(0.5)
     typewrite("you may:")
     if game_state["bleeding"] == False:
@@ -1119,4 +1126,8 @@ def stickbattle():
     elif choice == "search":
         tick()
         print("you searched around the vicinity in search of battle apparati.")
+        time.sleep(1)
+        if game_state["trust"] >= 5:
+        print("but nothing was found.")
+
 titlescreen()
