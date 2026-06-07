@@ -172,7 +172,8 @@ def ask_input(prompt):
             settings()
             continue
         return player_input
-
+def settings():
+    print("settings under construction. come back later. sorry about that mate lol.")
 
 def tick():
     if game_state["bleeding"] >= 0:
@@ -181,6 +182,7 @@ def tick():
         print(f"your health level is {game_state['health']}")
     if game_state["health"] <= 1:
         typewrite("you died.")
+        deathending()
     if game_state["reality_stability"] <= 1:
         typewrite("suddenly, you feel very intense rumbling. you see a crack appear before your eyes. suddenly, everything goes white. you feel your soul leaving, somehow.")
         typewrite("your soul slowly dissolves into nothingness.")
@@ -356,7 +358,7 @@ def intro():
         game_state["difflevel"] = 4
         stopmusic()
         intro_scene_bedroom()
-    elif difficulty== "5":
+    elif difficulty == "5":
         stopmusic()
         if game_state["2nd_run"]:
             typewrite("wait...")
@@ -366,8 +368,10 @@ def intro():
             typewrite(">>ERROR: SECURITY BREACH")
             branch2()
         else:
-            print("ḯ̵̬̹͗͝n̸͚̏̿̈̒́͝v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ ̵̣͠ǐ̵̡̞̣͛̈ͅn̵̰͝p̵͖͐̐̐͝u̸̬̐̂̿̂t̷̨̧̩̼̪̉̈́̈̈. please choose a v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ difficulty.")
+            print("ḯ̵̬̹͗͝n̸͚̏̿̈̒́͝v̸̼̓a̸͍͋ͅl̶̛͇͓̬̃̏̍i̵̠̪̹̥̅̎́̾d̷̙̟͍͒̀͐̈́̕ ̵̣͠ǐ̵̡̞̣͛̈ͅn̵̰͝p̵͖͐̐̐͝u̸̬̐̂̿̂t̷collaboration")
             intro()
+    elif difficulty == "battledebugoption":
+        stickbattlestarter()
     else:
         print("invalid input. please choose a valid difficulty.")
         intro()
@@ -1107,7 +1111,9 @@ def stickbattlestarter():
     playbattlemusic()
     print("stick draws near!")
     print("your turn.")
+    stickbattle()
 def stickbattle():
+    os.system("cls")
     time.sleep(0.5)
     typewrite("you may:")
     if game_state["bleeding"] == False:
@@ -1121,13 +1127,33 @@ def stickbattle():
     if choice == "attack":
         tick()
         typewrite("you take a swing at the stick using those fine knuckles of thine.")
+        time.sleep(0.5)
         print("bam! 10 damage to the stick.")
         battle_state["enemyhp"] -= 10
+        time.sleep(1.5)
+        
+        stickbattle()
     elif choice == "search":
         tick()
         print("you searched around the vicinity in search of battle apparati.")
         time.sleep(1)
         if game_state["trust"] >= 5:
-        print("but nothing was found.")
-
+                if game_state["findrustknife"] == 1:
+                    print("you already found the rusty knife, you don't find anything else.")
+                    stickbattle()
+                else:
+                    ("you trust that something good will happen.")
+                    time.sleep(1)
+                    print("come on...")
+                    time.sleep(2)
+                    print("dear heavens, is that a... you know what, that's a bloody wild knife you have there. you aren't quite sure of it's sharpness though, it might be safer to not use it for now.")
+                    time.sleep(2)
+                    game_state["findrustknife"] = 1
+        else:
+            print("you don't trust that aprintnything good will happen.")
+            time.sleep(1)
+            print("come on...")
+            time.sleep(2)
+            print("aw crap, nothing.")
+            stickbattle()
 titlescreen()

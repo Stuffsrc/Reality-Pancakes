@@ -1,7 +1,7 @@
 {
-  "current_scene": "intro_scene_bedroom",
+  "current_scene": "intro",
   "game_state": {
-    "difflevel": 1,
+    "difflevel": 0,
     "ate_pancakes": false,
     "opened_top_drawer": false,
     "trust": 0,
